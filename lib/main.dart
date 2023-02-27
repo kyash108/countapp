@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
   var left = 0;
 
   Future<void> totalsCount() async {
-    final response = await http.get(Uri.parse('https://ykumar.scweb.ca/readCount.php'));
+    final response = await http.get(Uri.parse('https://ykumar.scweb.ca/countit/readCount.php'));
     final jsonResponse = json.decode(response.body);
     final totals = jsonResponse[0]['totals'];
     total = int.parse(totals);
@@ -46,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> leftsCount() async {
-      final response = await http.get(Uri.parse('https://ykumar.scweb.ca/readCount.php'));
+      final response = await http.get(Uri.parse('https://ykumar.scweb.ca/countit/readCount.php'));
       final jsonResponse = json.decode(response.body);
       final lefts = jsonResponse[0]['lefts'];
       left = int.parse(lefts);
@@ -54,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
   Future<void> updateCounts() async {
-    final url = Uri.parse('https://ykumar.scweb.ca/incrementtotal.php');
+    final url = Uri.parse('https://ykumar.scweb.ca/countit/incrementtotal.php');
     final response = await http.post(url, body: {
       'increment_totals': '1',
     });
@@ -67,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
 
   Future<void> updateCountsLefts() async {
-    final url = Uri.parse('https://ykumar.scweb.ca/incrementleft.php');
+    final url = Uri.parse('https://ykumar.scweb.ca/countit/incrementleft.php');
     final response = await http.post(url, body: {
       'increment_lefts': '1',
     });
@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Future<void> decreaseTotal() async {
-    final url = Uri.parse('https://ykumar.scweb.ca/decreaseTotal.php');
+    final url = Uri.parse('https://ykumar.scweb.ca/countit/decreaseTotal.php');
     final response = await http.post(url, body: {
       'decrease_totals': '1',
     });
@@ -90,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
   Future<void> decreaseLeft() async {
-    final url = Uri.parse('https://ykumar.scweb.ca/decreaseLeft.php');
+    final url = Uri.parse('https://ykumar.scweb.ca/countit/decreaseLeft.php');
     final response = await http.post(url, body: {
       'decrease_lefts': '1',
     });
@@ -102,7 +102,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   void resetCounts() async {
-    final url = 'https://ykumar.scweb.ca/resetCounts.php';
+    final url = 'https://ykumar.scweb.ca/countit/resetCounts.php';
     final response = await http.get(Uri.parse(url));
     if (response.statusCode == 200) {
       print('Counts reset successfully');
